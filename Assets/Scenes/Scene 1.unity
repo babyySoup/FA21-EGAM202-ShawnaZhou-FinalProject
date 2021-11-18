@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 954678563}
   - component: {fileID: 954678565}
   m_Layer: 5
-  m_Name: HP
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,7 +1071,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39b9e226b5ac79488b2d1ed5f532823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 954678563}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1465,7 @@ GameObject:
   - component: {fileID: 1279805934}
   - component: {fileID: 1279805933}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CreatureMeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1592,8 +1591,9 @@ GameObject:
   - component: {fileID: 1352894020}
   - component: {fileID: 1352894021}
   - component: {fileID: 1352894022}
+  - component: {fileID: 1352894023}
   m_Layer: 0
-  m_Name: Creature Small
+  m_Name: CreatureS
   m_TagString: Creature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1667,6 +1667,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1352894023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352894018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a3c006ddd542e4bad52ec93aadaf17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  NumOfItems: 2
+  item:
+  - {fileID: 1279805931}
+  - {fileID: 1906506132}
 --- !u!1 &1411197201 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8187369583392383027, guid: be2fa488dab8cdb458e5ab241c80d723, type: 3}
@@ -1687,11 +1704,12 @@ MonoBehaviour:
   maxHP: 100
   maxThirst: 80
   maxHunger: 50
-  hp: 100
+  health: 100
   thirst: 0
   hunger: 0
   thirstRate: 0.5
   hungerRate: 0.2
+  damage: 5
 --- !u!1 &1425973441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,7 +2095,7 @@ GameObject:
   - component: {fileID: 1906506135}
   - component: {fileID: 1906506134}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: CreatureEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2204,15 +2222,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187369583392383028, guid: be2fa488dab8cdb458e5ab241c80d723, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75634223
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8187369583392383028, guid: be2fa488dab8cdb458e5ab241c80d723, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.188548
+      value: 1.3196567
       objectReference: {fileID: 0}
     - target: {fileID: 8187369583392383028, guid: be2fa488dab8cdb458e5ab241c80d723, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6874631
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8187369583392383028, guid: be2fa488dab8cdb458e5ab241c80d723, type: 3}
       propertyPath: m_LocalPosition.x

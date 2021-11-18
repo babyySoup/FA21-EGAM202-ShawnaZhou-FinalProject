@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Survival : MonoBehaviour
 {
     //HP system  
     //fix thirst hunger later
     public float maxHP, maxThirst, maxHunger;
-    public float hp, thirst, hunger;
+    public float health, thirst, hunger;
     public float thirstRate, hungerRate;
 
-    public HealthBar healthbar;
+    /////////public Healthbar healthbar;
 
     //other survival tracker
     public float damage;
 
-
-
     public static bool triggeringAI;
     public static GameObject triggerAI;
 
+
+
+
     public void Start()
     {
-        hp = maxHP;
+        health = maxHP;
     }
     // Update is called once per frame
     void Update()
@@ -62,8 +64,8 @@ public class Survival : MonoBehaviour
     {
         if (target.tag == "Creature")
         {
-            Animal creature = target.GetComponent<Animal>();
-            creature.health -= damage;
+            //Animal creature = target.GetComponent("CreatureS");
+            //creature.health -= damage;
 
         }
     }
@@ -82,8 +84,8 @@ public class Survival : MonoBehaviour
 
     public void TakeHit(int damage)
     {
-        hp -= damage;
-        healthbar.fillAmount((float)hp / (float)maxHP);
+        health -= damage;
+        //Healthbar.fillAmount((float)health / (float)maxHP);
 
 
     }
@@ -93,8 +95,8 @@ public class Survival : MonoBehaviour
     {
         if (other.tag == "Creature")
         {
-            triggeringAI = other.gameObject;
-            triggerAI = true; 
+            triggerAI = other.gameObject;
+            triggeringAI = true; 
         }
     }
 
@@ -102,7 +104,8 @@ public class Survival : MonoBehaviour
     {
         if (other.tag == "Creature")
         {
-            triggerAI = false;
+            triggeringAI = false;
+            triggerAI = null;
         }
     }
 
