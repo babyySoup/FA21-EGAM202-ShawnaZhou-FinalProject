@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Survival : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class Survival : MonoBehaviour
     public float maxHP, maxThirst, maxHunger;
     public float hp, thirst, hunger;
     public float thirstRate, hungerRate;
-    public Healthbar healthBar;
+
+    public HealthBar healthbar;
 
     //other survival tracker
     public float damage;
@@ -81,7 +83,7 @@ public class Survival : MonoBehaviour
     public void TakeHit(int damage)
     {
         hp -= damage;
-        healthbar.UpdateHP((float)hp / (float)maxHP);
+        healthbar.fillAmount((float)hp / (float)maxHP);
 
 
     }
@@ -100,7 +102,6 @@ public class Survival : MonoBehaviour
     {
         if (other.tag == "Creature")
         {
-            triggeringAI = null;
             triggerAI = false;
         }
     }

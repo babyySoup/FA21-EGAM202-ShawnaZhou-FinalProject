@@ -13,13 +13,13 @@ public class Creature : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
 
     private bool dead;
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -30,7 +30,7 @@ public class Creature : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             Death();
         }
@@ -40,12 +40,13 @@ public class Creature : MonoBehaviour
     {
         for (int i = 0; i < NumOfItems; i++)
         {
-
+            GameObject droppedItem = Instantiate(item[i], transform.position, Quaternion.identity);
         }
     }
 
     public void Death()
     {
-
+        DropItems();
+        Destroy(this.gameObject);
     }
 }
