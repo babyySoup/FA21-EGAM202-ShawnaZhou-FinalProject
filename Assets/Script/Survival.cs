@@ -50,13 +50,14 @@ public class Survival : MonoBehaviour
         }
 
 
-        if (triggeringAI)
+        if (triggeringAI && triggerAI)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Attack(triggerAI);
             }
         }
+
     }
 
     //attack creature

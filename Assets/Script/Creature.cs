@@ -41,6 +41,7 @@ public class Creature : MonoBehaviour
         for (int i = 0; i < NumOfItems; i++)
         {
             GameObject droppedItem = Instantiate(item[i], transform.position, Quaternion.identity);
+            break;
         }
     }
 

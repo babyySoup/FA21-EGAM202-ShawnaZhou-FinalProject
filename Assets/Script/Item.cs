@@ -7,21 +7,16 @@ public class Item : MonoBehaviour
     public Item[] Inventory;
     public int currentItemIndex;
 
-    public virtual void Attack()
-    {
-        Debug.Log("You attack");
-    }
-    public virtual void Talk()
-    {
-        Debug.Log("You start a conversation");
-    }
     public virtual void Use()
     {
-        Debug.Log("You use item");
+        Debug.Log("You use your item! no work");
+    }
+    public virtual void Wear()
+    {
+        Debug.Log("You attempt to wear the item, wont do!");
     }
     public virtual void Eat()
     {
-        Debug.Log("You eat item");
+        Debug.Log("You try to eat item! it does not wanna be eaten tho");
     }
-
 }

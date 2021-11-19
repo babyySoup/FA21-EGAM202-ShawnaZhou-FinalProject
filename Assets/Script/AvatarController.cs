@@ -49,6 +49,7 @@ public class AvatarController : MonoBehaviour
         thisAnimator.SetFloat("WalkSpeed", 1f * thisNavMeshAgent.velocity.magnitude);
 
 
+
         //up arrow
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -96,8 +97,6 @@ public class AvatarController : MonoBehaviour
                 Debug.Log("You are not holding anything!");
             }
         }
-
-
 
         //E for pick up
         if (Input.GetKeyDown(KeyCode.E))
@@ -154,7 +153,14 @@ public class AvatarController : MonoBehaviour
                 Debug.Log("No cant do!!");
         }
 
-        
+        //R to Wear item 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].GetComponent<Item>().Wear();
+            else
+                Debug.Log("No cant do!!");
+        }
 
         //Q to eat
         if (Input.GetKeyDown(KeyCode.Q))

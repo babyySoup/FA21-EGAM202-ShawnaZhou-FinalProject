@@ -24,12 +24,12 @@ public class CameraController : MonoBehaviour
 
     private void move()
     {
-        transform.position += transform.forward * inputZ * Time.deltaTime * 50;
+        transform.position += transform.forward * inputZ * Time.deltaTime * 70;
 
     }
 
     private void rotate()
     {
-        transform.Rotate(new Vector3(0f, inputX * 30 * Time.deltaTime, 0f));
+        transform.Rotate(new Vector3(0f, inputX * 50 * Time.deltaTime, 0f));
     }
 }
