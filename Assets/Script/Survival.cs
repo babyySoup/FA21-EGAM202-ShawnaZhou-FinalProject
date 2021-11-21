@@ -12,7 +12,7 @@ public class Survival : MonoBehaviour
     public float health, thirst, hunger;
     public float thirstRate, hungerRate;
 
-    /////////public Healthbar healthbar;
+    public Healthbar healthbar;
 
     //other survival tracker
     public float damage;
@@ -86,7 +86,7 @@ public class Survival : MonoBehaviour
     public void TakeHit(int damage)
     {
         health -= damage;
-        //Healthbar.fillAmount((float)health / (float)maxHP);
+        //healthbar.fillAmount((float)health / (float)maxHP);
 
 
     }

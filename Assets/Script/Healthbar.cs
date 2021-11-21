@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Heathbar : MonoBehaviour
+public class Healthbar : MonoBehaviour
 {
-    private Image Healthbar;
+    private Image HealthbarImage;
     public float hp;
     private float MaxHealth;
-
+    float fillAmount;
 
     private void Start()
     {
-        Healthbar = GetComponent<Image>();
+        HealthbarImage = GetComponent<Image>();
 
     }
     
     public void Update()
     {
-        Healthbar.fillAmount = hp / MaxHealth;
+        fillAmount = hp / MaxHealth;
 
     }
 }

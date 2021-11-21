@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Creature
+  - ShroomPlant
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -12,9 +14,9 @@ TagManager:
   - Item
   - Water
   - UI
+  - Player
+  - Ground
   - 
-  - 
-  - ClickableGround
   - 
   - 
   - 
