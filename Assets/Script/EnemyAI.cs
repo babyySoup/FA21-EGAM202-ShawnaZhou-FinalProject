@@ -11,12 +11,7 @@ public class EnemyAI : MonoBehaviour
 
     public float creatureHealth;
 
-    public enum EnemyStateT
-    {
-        DecidingWhatToDo, Patrolling, Chasing, Attacking
-    }
 
-    public EnemyStateT currentState;
 
     //patrol 
     public Vector3 guardPoint;
@@ -36,7 +31,7 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-        currentState = EnemyStateT.DecidingWhatToDo;
+        
     }
 
 
@@ -46,40 +41,22 @@ public class EnemyAI : MonoBehaviour
         playerInAlarmRange = Physics.CheckSphere(transform.position, alarmRange, Player);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
 
-        switch (currentState)
-        {
-            case EnemyStateT.DecidingWhatToDo:
-                Decide();
-                break;
-            case EnemyStateT.Patrolling:
-                Patrol();
-                break;
-            case EnemyStateT.Chasing:
-                ChasePlayer();
-                break;
-            case EnemyStateT.Attacking:
-                AttackPlayer();
-                break;
-                    
-        }
-    }
-
-
-    public void Decide()
-    {
         if (!playerInAlarmRange && !playerInAttackRange)
         {
-            currentState = EnemyStateT.Patrolling;
+            Patrol();
         }
         if (playerInAlarmRange && !playerInAttackRange)
         {
-            currentState = EnemyStateT.Chasing;
+            ChasePlayer();
         }
         if (playerInAttackRange && playerInAlarmRange)
         {
-            currentState = EnemyStateT.Attacking;
+            AttackPlayer();
         }
+
     }
+
+
     private void Patrol()
     {
         if (!guarding)
@@ -97,7 +74,6 @@ public class EnemyAI : MonoBehaviour
             guarding = false;
         }
 
-        currentState = EnemyStateT.DecidingWhatToDo;
 
     }
 
@@ -119,7 +95,7 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        currentState = EnemyStateT.DecidingWhatToDo;
+        
 
     }
 
@@ -136,7 +112,7 @@ public class EnemyAI : MonoBehaviour
             attacked = true;
             Invoke(nameof(CoolDown), attackCD);
         }
-        currentState = EnemyStateT.DecidingWhatToDo;
+   
     }
 
     private void CoolDown()
