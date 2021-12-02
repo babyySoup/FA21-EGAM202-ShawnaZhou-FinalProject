@@ -234,3 +234,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Creature1: {fileID: 3257577159858244195, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
+  Creature2: {fileID: 4773906571547042200, guid: c01c77abf2a45a94cac661a20541e34b, type: 3}

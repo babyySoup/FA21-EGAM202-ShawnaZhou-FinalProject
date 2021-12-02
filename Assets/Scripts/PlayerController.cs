@@ -57,11 +57,27 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + moveAmt);
     }
 
+    
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, shotPoint.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = shotPoint.forward * 10f;
-        Destroy(bullet, 15f);
+        Destroy(bullet, 8f);
 
+    }
+
+    //player taking damage
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Creature")
+        {
+            health -= other.gameObject.GetComponent<Creature>().Damage;
+            if (health <= 0)
+            {
+                //player die
+                GameObject.Find("GameOverText").SetActive(true);
+            }
+
+        }
     }
 }
