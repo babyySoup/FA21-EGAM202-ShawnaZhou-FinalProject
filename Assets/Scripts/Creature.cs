@@ -13,7 +13,7 @@ public class Creature : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float health = 50;
+        health = 50;
         rb = GetComponent<Rigidbody>();
         //transform.LookAt(Vector3.zero);
         //rb.velocity = transform.forward * moveSd;
