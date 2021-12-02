@@ -10,11 +10,21 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform shotPoint;
 
+    public float moveSpeed;
+    Vector3 moveAmt;
+    public float health;
+
+    Rigidbody rb;
+    
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+
+    }
 
     void Update()
-
-        //look at the direction of the mouse
     {
+        //look at the direction of the mouse
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane groundFloor = new Plane(Vector3.up, Vector3.zero);
         float rayDistance;
@@ -25,6 +35,13 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(new Vector3(point.x, 1f, point.z));
         }
 
+
+        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        moveAmt = moveDirection * moveSpeed * Time.deltaTime;
+
+
+
+
         //player use left click to shoot
         timer += Time.deltaTime;
         if (timer > 1/fireSpeed && Input.GetMouseButton(0))
@@ -32,6 +49,12 @@ public class PlayerController : MonoBehaviour
             timer = 0;
             Shoot();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        //move to new position
+        rb.MovePosition(rb.position + moveAmt);
     }
 
     void Shoot()
