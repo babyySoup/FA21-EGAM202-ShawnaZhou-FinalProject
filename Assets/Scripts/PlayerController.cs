@@ -75,7 +75,8 @@ public class PlayerController : MonoBehaviour
             if (health <= 0)
             {
                 //player die
-                GameObject.Find("GameOverText").SetActive(true);
+                GameObject.Find("Canvas").transform.Find("GameOverText").gameObject.SetActive(true);
+                Application.Quit();
             }
 
         }
