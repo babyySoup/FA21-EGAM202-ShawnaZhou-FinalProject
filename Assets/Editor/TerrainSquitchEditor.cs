@@ -29,6 +29,9 @@ public class TerrainSquitchEditor : Editor
         if (GUILayout.Button("Fill Niche"))
             squitch.FillNiche();
 
+        if (GUILayout.Button("Fill Niche2"))
+            squitch.FillNiche2();
+
         if (GUILayout.Button("Smooth"))
             squitch.Smooth();
     }

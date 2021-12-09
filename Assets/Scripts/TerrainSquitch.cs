@@ -25,11 +25,11 @@ public class TerrainSquitch : MonoBehaviour
     public float smoothHeight;
 
 
-    [Header("Niche Flower Settings")]
+    [Header("Niche MedKit Settings")]
     public Niche FillNiche_Niche;
     public Transform FillNiche_ParentTransform;
 
-    [Header("Niche Coral Settings")]
+    [Header("Niche Potion Settings")]
     public Niche FillNiche_Niche2;
     public Transform FillNiche_ParentTransform2;
 
@@ -121,10 +121,11 @@ public class TerrainSquitch : MonoBehaviour
                 }
             }
         }
+        Debug.Log("filled");
     }
 
     //niche 2 coral
-    public void FillNicheCoral()
+    public void FillNiche2()
     {
         Terrain thisTerrian = GetComponent<Terrain>();
         if (thisTerrian == null)
@@ -133,7 +134,6 @@ public class TerrainSquitch : MonoBehaviour
         int heightMapWidth, heightMapLength;
         heightMapWidth = thisTerrian.terrainData.heightmapResolution;
         heightMapLength = thisTerrian.terrainData.heightmapResolution;
-        Debug.Log(heightMapWidth + heightMapLength);
 
         float heightMapWidthInWorld, heightMapLengthInWorld;
         heightMapWidthInWorld = heightMapWidth * thisTerrian.terrainData.heightmapScale.x;

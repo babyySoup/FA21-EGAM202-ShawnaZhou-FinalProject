@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public UnityEngine.AI.NavMeshAgent thisNavMeshAgent;
     //shooting
     public float fireSpeed;
     float timer;
@@ -12,36 +13,38 @@ public class PlayerController : MonoBehaviour
 
     //movement
     public float moveSpeed;
-    Vector3 moveAmt;
+    public GameObject Mousebox;
     public float health;
-    Rigidbody rb;
+
 
     //inventory
     public Item[] Inventory;
     public int currentItemIndex;
 
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        thisNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
     }
 
     void Update()
     {
-        //look at the direction of the mouse
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane groundFloor = new Plane(Vector3.up, Vector3.zero);
-        float rayDistance;
 
-        if (groundFloor.Raycast(ray, out rayDistance))
-        {
-            Vector3 point = ray.GetPoint(rayDistance);
-            transform.LookAt(new Vector3(point.x, 1f, point.z));
-        }
+        Ray rayFromCameraToMouse;
+        RaycastHit closestClickableGroundOnRay;
 
+        rayFromCameraToMouse = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(rayFromCameraToMouse, out closestClickableGroundOnRay, Mathf.Infinity, LayerMask.GetMask("Ground"));
+        Mousebox.transform.position = closestClickableGroundOnRay.point;
 
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-        moveAmt = moveDirection * moveSpeed * Time.deltaTime;
+        if (Input.GetMouseButton(1))
+            Mousebox.transform.localScale = new Vector3(2, 2, 2);
+        else
+            Mousebox.transform.localScale = new Vector3(1, 1, 1);
+
+        if (Input.GetMouseButton(1))
+            thisNavMeshAgent.SetDestination(Mousebox.transform.position);
 
 
 
@@ -127,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
                     Inventory[currentItemIndex] = overlappingItems[0].GetComponent<Item>();
                     Inventory[currentItemIndex].transform.SetParent(gameObject.transform);
-                    Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 4, 7);
+                    Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 1, 1);
                     Debug.Log("You picked up a " + Inventory[currentItemIndex].name);
                 }
 
@@ -159,17 +162,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        //move to new position
-        rb.MovePosition(rb.position + moveAmt);
-    }
-
     
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, shotPoint.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().velocity = shotPoint.forward * 10f;
+        bullet.GetComponent<Rigidbody>().velocity = shotPoint.forward * 15f;
         Destroy(bullet, 5f);
 
     }
