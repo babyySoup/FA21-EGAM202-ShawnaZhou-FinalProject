@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, shotPoint.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = shotPoint.forward * 10f;
-        Destroy(bullet, 8f);
+        Destroy(bullet, 5f);
 
     }
 

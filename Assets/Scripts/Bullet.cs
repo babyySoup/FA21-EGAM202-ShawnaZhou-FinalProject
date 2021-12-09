@@ -17,25 +17,26 @@ public class Bullet : MonoBehaviour
 
             //hit enemy and damage them
             Creature creature = other.gameObject.GetComponent<Creature>();
-            creature.health -= 20;
+            creature.health -= 10;
 
             if(creature.health <= 0)
             {
+                //kill enemy
                 Destroy(other.gameObject);
                 //score player
                 PlayerScore ps = GameObject.Find("Player").GetComponent<PlayerScore>();
                 ps.KillCount++;
                 print(ps.KillCount);
 
-                int SpawnCreature = Random.Range(0, 2);
-                //random generate new enemies 
-                if(SpawnCreature == 0)
-                {
-                    Instantiate(Creature1, new Vector3(Random.Range(-27, 27), 0.5f, Random.Range(-27, 27)), Quaternion.identity);
-                }else if(SpawnCreature == 1)
-                {
-                    Instantiate(Creature2, new Vector3(Random.Range(-27, 27), 0.5f, Random.Range(-27, 27)), Quaternion.identity);
-                }
+                //int SpawnCreature = Random.Range(0, 1);
+                ////random generate new enemies 
+                //if(SpawnCreature == 0)
+                //{
+                //    Instantiate(Creature1, new Vector3(Random.Range(-27, 27), 0.5f, Random.Range(-27, 27)), Quaternion.identity);
+                //}else if(SpawnCreature == 1)
+                //{
+                //    Instantiate(Creature2, new Vector3(Random.Range(-27, 27), 0.5f, Random.Range(-27, 27)), Quaternion.identity);
+                //}
                 
    
             }

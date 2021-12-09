@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Creature
+  - SafeSpot
   layers:
   - Default
   - TransparentFX

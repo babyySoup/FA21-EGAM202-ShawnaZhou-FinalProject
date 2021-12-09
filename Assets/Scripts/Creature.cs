@@ -5,11 +5,18 @@ using UnityEngine.AI;
 
 public class Creature : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public float moveSd = 5f;
+    //states
+    public enum EnemyStateT
+    {
+        DecidingWhatToDoNext,
+        SeekingPlayer, MovingToPlayer, Attack, Escape, MovingToSafeSpot, Heal
+    }
+    public EnemyStateT currentState;
+
+    NavMeshAgent thisNavMeshAgent;
+    public float moveSd = 20f;
     public float health;
     public int Damage = 5;
-    Rigidbody rb;
     public Transform player;
 
     //enemy Ai stats
@@ -18,45 +25,174 @@ public class Creature : MonoBehaviour
     public bool playerInSight;
     public bool playerInAttackR;
     public LayerMask isGround, isPlayer;
+    public float Hunger = 50f, HungerLostPS = 0.5f;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        //transform.LookAt(Vector3.zero);
-        //rb.velocity = transform.forward * moveSd;
-    }
-
-    private void Awake()
-    {
         player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
-
+        thisNavMeshAgent = GetComponent<NavMeshAgent>();
+        currentState = EnemyStateT.DecidingWhatToDoNext;
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         playerInSight = Physics.CheckSphere(transform.position, sightRange, isPlayer);
         playerInAttackR = Physics.CheckSphere(transform.position, attackRange, isPlayer);
 
-        if(playerInSight && !playerInAttackR)
+        Hunger -= HungerLostPS * Time.deltaTime;
+
+        //enemy death addressed in bullet script
+
+        switch (currentState)
         {
-            ChasePlayer();
-        }
-        if(playerInSight && playerInAttackR)
-        {
-            AttackPlayer();
+            case EnemyStateT.DecidingWhatToDoNext:
+                DecideWhatToDoNext();
+                break;
+            case EnemyStateT.SeekingPlayer:
+                SeekPlayer();
+                break;
+            case EnemyStateT.MovingToPlayer:
+                ChasePlayer();
+                break;
+            case EnemyStateT.Attack:
+                AttackPlayer();
+                break;
+            case EnemyStateT.Escape:
+                Run();
+                break;
+            case EnemyStateT.MovingToSafeSpot:
+                MoveToSafeSpot();
+                break;
+            case EnemyStateT.Heal:
+                HealSelf();
+                break;
+
         }
     }
 
-    private void ChasePlayer()
+
+
+    public void DecideWhatToDoNext()
     {
-        agent.SetDestination(player.position);
+        if (playerInSight && !playerInAttackR && Hunger < 45)
+        {
+            currentState = EnemyStateT.SeekingPlayer;
+            return;
+        }
+
+        if (playerInSight && playerInAttackR && Hunger < 45)
+        {
+            currentState = EnemyStateT.Attack;
+            return;
+        }
+        if (health <= 10)
+        {
+            currentState = EnemyStateT.Escape;
+            return;
+        }
+    }
+
+    public void SeekPlayer()
+    {
+        GameObject[] playerAvatar = GameObject.FindGameObjectsWithTag("Player");
+        GameObject targetPlayerObject = playerAvatar[0];
+
+
+        thisNavMeshAgent.SetDestination(targetPlayerObject.transform.position);
+        currentState = EnemyStateT.MovingToPlayer;
     }
 
     private void AttackPlayer()
     {
-        agent.SetDestination(player.position);
         transform.LookAt(player);
+        //damage code is written in player controller script
+        if (Hunger < 10)
+        {
+            currentState = EnemyStateT.DecidingWhatToDoNext;
+        }
+    } 
+    
+    //escaping and safe spot
+
+    public void Run()
+    {
+        GameObject[] SafeObjects = GameObject.FindGameObjectsWithTag("SafeSpot");
+        if(SafeObjects.Length > 0)
+        {
+            GameObject targetSafeObject = SafeObjects[0];
+            thisNavMeshAgent.SetDestination(targetSafeObject.transform.position);
+            currentState = EnemyStateT.MovingToSafeSpot;
+        }
+    }
+
+    public void MoveToSafeSpot()
+    {
+        GameObject[] SafeObjects = GameObject.FindGameObjectsWithTag("SafeSpot");
+        if (SafeObjects.Length > 0)
+        {
+            GameObject targetSafeObject = SafeObjects[0];
+            thisNavMeshAgent.SetDestination(targetSafeObject.transform.position);
+        }
+    }
+
+    public void HealSelf()
+    {
+        health += 5 * Time.deltaTime;
+        if (health >= 30f)
+        {
+            DecideWhatToDoNext();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (currentState == EnemyStateT.MovingToPlayer && other.tag == "Player")
+        {
+            currentState = EnemyStateT.Attack;
+        }
+        //heal when touching safe spot 
+
+        if (currentState == EnemyStateT.MovingToSafeSpot && other.tag == "SafeSpot")
+        {
+            currentState = EnemyStateT.Heal;
+        }
+    }
+
+    public void ChasePlayer()
+    {
+        thisNavMeshAgent.SetDestination(player.transform.position);
+    }
+
+
+    public GameObject FindClosestObjectWithTag(string tag)
+    {
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
+
+        if (objectsWithTag.Length == 0)
+        {
+            return null;
+        }
+        
+
+        GameObject closestObject = objectsWithTag[0];
+        float distanceToClosestObject = 1e6f,
+        distanceToCurrentObject;
+        for (int i = 0; i < objectsWithTag.Length; i++)
+        {
+            Vector3 vectorToCurrentObject;
+            GameObject currentObject;
+            currentObject = objectsWithTag[i];
+            vectorToCurrentObject = currentObject.transform.position - transform.position;
+            distanceToCurrentObject = vectorToCurrentObject.magnitude;
+            if (distanceToCurrentObject < distanceToClosestObject)
+            {
+                closestObject = objectsWithTag[i];
+                distanceToClosestObject = distanceToCurrentObject;
+            }
+        }
+        return closestObject;
     }
 }
+
