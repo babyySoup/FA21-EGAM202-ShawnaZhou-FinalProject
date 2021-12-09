@@ -1559,8 +1559,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.2414, y: 7.148573, z: 4.1767635}
-  m_Center: {x: 0.20481205, y: 0.039198875, z: -0.063952446}
+  m_Size: {x: 7.8081026, y: 7.148573, z: 9.233478}
+  m_Center: {x: -0.36858416, y: 0.039198875, z: -0.574965}
 --- !u!1 &1932613328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,8 +1730,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
+      propertyPath: m_Acceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: m_AngularSpeed
-      value: 120
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3788406180701910883, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: m_RootOrder
@@ -1782,6 +1794,10 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
+      propertyPath: moveSd
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 239771192}
@@ -1793,13 +1809,17 @@ PrefabInstance:
       propertyPath: attackRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
+      propertyPath: HungerLostPS
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3788406180701910887, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3788406180701910887, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: moveSd
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3788406180701910887, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: player

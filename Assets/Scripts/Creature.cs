@@ -14,7 +14,7 @@ public class Creature : MonoBehaviour
     public EnemyStateT currentState;
 
     NavMeshAgent thisNavMeshAgent;
-    public float moveSd = 30f;
+    public float moveSd = 10f;
     public float health;
     public int Damage = 5;
     public Transform player;
@@ -44,9 +44,14 @@ public class Creature : MonoBehaviour
 
         Hunger -= HungerLostPS * Time.deltaTime;
 
-        //enemy death addressed in bullet script
+        if (health <= 30)
+        {
+            currentState = EnemyStateT.Escape;
+        }
 
-        switch (currentState)
+            //enemy death addressed in bullet script
+
+            switch (currentState)
         {
             case EnemyStateT.DecidingWhatToDoNext:
                 DecideWhatToDoNext();
@@ -112,6 +117,10 @@ public class Creature : MonoBehaviour
     {
         transform.LookAt(player);
         //damage code is written in player controller script
+        if (health <= 30)
+        {
+            currentState = EnemyStateT.Escape;
+        }
         if (Hunger < 10)
         {
             currentState = EnemyStateT.DecidingWhatToDoNext;
@@ -122,9 +131,11 @@ public class Creature : MonoBehaviour
 
     public void Run()
     {
+        Debug.Log("Running");
         GameObject[] SafeObjects = GameObject.FindGameObjectsWithTag("SafeSpot");
         if(SafeObjects.Length > 0)
         {
+            Debug.Log("Found a Safe Spot");
             GameObject targetSafeObject = SafeObjects[0];
             thisNavMeshAgent.SetDestination(targetSafeObject.transform.position);
             currentState = EnemyStateT.MovingToSafeSpot;
@@ -138,6 +149,7 @@ public class Creature : MonoBehaviour
         {
             GameObject targetSafeObject = SafeObjects[0];
             thisNavMeshAgent.SetDestination(targetSafeObject.transform.position);
+            currentState = EnemyStateT.Heal;
         }
     }
 
@@ -145,7 +157,7 @@ public class Creature : MonoBehaviour
     {
         health += HPGain * Time.deltaTime;
 
-        if (health >= 50f)
+        if (health >= 50)
         {
             currentState = EnemyStateT.DecidingWhatToDoNext;
         }
