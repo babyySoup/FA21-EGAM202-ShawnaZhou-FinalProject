@@ -14,7 +14,7 @@ public class Creature : MonoBehaviour
     public EnemyStateT currentState;
 
     NavMeshAgent thisNavMeshAgent;
-    public float moveSd = 20f;
+    public float moveSd = 30f;
     public float health;
     public int Damage = 5;
     public Transform player;
@@ -26,6 +26,7 @@ public class Creature : MonoBehaviour
     public bool playerInAttackR;
     public LayerMask isGround, isPlayer;
     public float Hunger = 50f, HungerLostPS = 0.5f;
+    public float HPGain = 3f;
 
 
     void Start()
@@ -76,18 +77,21 @@ public class Creature : MonoBehaviour
 
     public void DecideWhatToDoNext()
     {
-        if (playerInSight && !playerInAttackR && Hunger < 45)
+        if (health >= 50)
         {
-            currentState = EnemyStateT.SeekingPlayer;
-            return;
+            if (playerInSight && !playerInAttackR && Hunger < 45)
+            {
+                currentState = EnemyStateT.SeekingPlayer;
+                return;
+            }
+            if (playerInSight && playerInAttackR && Hunger < 45)
+            {
+                currentState = EnemyStateT.Attack;
+                return;
+            }
         }
 
-        if (playerInSight && playerInAttackR && Hunger < 45)
-        {
-            currentState = EnemyStateT.Attack;
-            return;
-        }
-        if (health <= 10)
+        if (health <= 20)
         {
             currentState = EnemyStateT.Escape;
             return;
@@ -139,10 +143,11 @@ public class Creature : MonoBehaviour
 
     public void HealSelf()
     {
-        health += 5 * Time.deltaTime;
-        if (health >= 30f)
+        health += HPGain * Time.deltaTime;
+
+        if (health >= 50f)
         {
-            DecideWhatToDoNext();
+            currentState = EnemyStateT.DecidingWhatToDoNext;
         }
     }
 
