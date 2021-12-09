@@ -53,6 +53,110 @@ public class PlayerController : MonoBehaviour
             timer = 0;
             Shoot();
         }
+
+        //inventory key up arrow 
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].gameObject.SetActive(false);
+
+            Debug.Log("You rearrange your inventory.");
+            currentItemIndex++;
+
+            if (currentItemIndex >= Inventory.Length)
+                currentItemIndex = 0;
+
+            if (Inventory[currentItemIndex] != null)
+            {
+                Inventory[currentItemIndex].gameObject.SetActive(true);
+                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 4, 7);
+                Debug.Log("You are now holding a " + Inventory[currentItemIndex].name);
+
+            }
+            else
+            {
+                Debug.Log("You are not holding anything!");
+            }
+        }
+        // down arrow
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].gameObject.SetActive(false);
+
+            Debug.Log("You rearrange your inventory");
+            currentItemIndex--;
+            if (currentItemIndex < 0)
+                currentItemIndex = Inventory.Length - 1;
+
+            if (Inventory[currentItemIndex] != null)
+            {
+                Inventory[currentItemIndex].gameObject.SetActive(true);
+                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 4, 7);
+                //Debug.Log("You are now holding a ") + Inventory[currentItemIndex].name);
+
+            }
+            else
+            {
+                Debug.Log("You are not holding anything!");
+            }
+        }
+
+
+        //E for pick up
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Inventory[currentItemIndex] != null)
+                Debug.Log("your hands are full!");
+            else
+            {
+                Collider[] overlappingItems;
+                overlappingItems = Physics.OverlapBox(transform.position + 2 * Vector3.forward, 3 * Vector3.one, Quaternion.identity, LayerMask.GetMask("Item"));
+
+                if (overlappingItems.Length == 0)
+                    Debug.Log("No item in front of you");
+                else
+                {
+                    //pick up
+                    if (Inventory[currentItemIndex] != null)
+                    {
+
+                        Inventory[currentItemIndex].transform.SetParent(null);
+                        Inventory[currentItemIndex] = null;
+                    }
+
+                    Inventory[currentItemIndex] = overlappingItems[0].GetComponent<Item>();
+                    Inventory[currentItemIndex].transform.SetParent(gameObject.transform);
+                    Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 4, 7);
+                    Debug.Log("You picked up a " + Inventory[currentItemIndex].name);
+                }
+
+            }
+        }
+
+        //G for Drop
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (Inventory[currentItemIndex] != null)
+            {
+                Inventory[currentItemIndex].transform.SetParent(null);
+                Debug.Log("You dropped " + Inventory[currentItemIndex].name);
+                Inventory[currentItemIndex] = null;
+            }
+            else
+            {
+                Debug.Log("You don't have anything to drop!");
+            }
+        }
+
+        //Space for use
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Inventory[currentItemIndex] != null)
+                Inventory[currentItemIndex].GetComponent<Item>().Use();
+            else
+                Debug.Log("No cant do!!");
+        }
     }
 
     private void FixedUpdate()

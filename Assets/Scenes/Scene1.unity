@@ -1368,7 +1368,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 35
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 587
@@ -2005,22 +2005,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: m_Acceleration
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910880, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3788406180701910883, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2064,38 +2048,6 @@ PrefabInstance:
     - target: {fileID: 3788406180701910883, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: health
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: moveSd
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 239771192}
-    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: sightRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: attackRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910886, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: HungerLostPS
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910887, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3788406180701910887, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-      propertyPath: moveSd
-      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3788406180701910887, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
       propertyPath: player
