@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //shooting
     public float fireSpeed;
     float timer;
-
     public GameObject bulletPrefab;
     public Transform shotPoint;
 
+    //movement
     public float moveSpeed;
     Vector3 moveAmt;
     public float health;
-
     Rigidbody rb;
-    
+
+    //inventory
+    public Item[] Inventory;
+    public int currentItemIndex;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
