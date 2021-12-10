@@ -44,7 +44,7 @@ public class Creature : MonoBehaviour
 
         Hunger -= HungerLostPS * Time.deltaTime;
 
-        if (health <= 30)
+        if (health <= 30 && currentState != EnemyStateT.Heal)
         {
             currentState = EnemyStateT.Escape;
         }
@@ -152,10 +152,14 @@ public class Creature : MonoBehaviour
         {
             currentState = EnemyStateT.Attack;
         }
-        //heal when touching safe spot 
-        if (currentState == EnemyStateT.Escape && other.tag == "SafeSpot")
+        ////heal when touching safe spot 
+        if(other.tag == "SafeSpot")
         {
-            currentState = EnemyStateT.Heal;
+            if (currentState == EnemyStateT.Escape)
+            {
+                Debug.Log("Running");
+                currentState = EnemyStateT.Heal;
+            }
         }
     }
 

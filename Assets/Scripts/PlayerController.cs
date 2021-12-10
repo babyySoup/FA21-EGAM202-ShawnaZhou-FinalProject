@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
 
     //knife ability 
     public GameObject knifeDance;
-
+    //canvas for chat
+    public Behaviour DialogCanvas;
 
     void Start()
     {
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour
             if (Inventory[currentItemIndex] != null)
             {
                 Inventory[currentItemIndex].gameObject.SetActive(true);
-                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 4, 7);
+                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 1, 1);
                 Debug.Log("You are now holding a " + Inventory[currentItemIndex].name);
 
             }
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
             if (Inventory[currentItemIndex] != null)
             {
                 Inventory[currentItemIndex].gameObject.SetActive(true);
-                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 4, 7);
+                Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 1, 1);
                 //Debug.Log("You are now holding a ") + Inventory[currentItemIndex].name);
 
             }
@@ -167,8 +168,15 @@ public class PlayerController : MonoBehaviour
         //Q to cast ability "Knife Dance"
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            var spell = Instantiate(knifeDance, transform.position, Quaternion.identity);
+            var ability = Instantiate(knifeDance, transform.position, Quaternion.identity);
         }
+
+        //chatting key
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DialogCanvas.enabled = !DialogCanvas.enabled;
+        }
+
 
     }
 

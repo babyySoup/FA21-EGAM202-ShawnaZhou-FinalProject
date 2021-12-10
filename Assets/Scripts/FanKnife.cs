@@ -40,7 +40,7 @@ public class FanKnife : MonoBehaviour
         {
             for (int i = knives.Count; i < knifeAmt; i++)
             {
-                var myKnives = Instantiate(knifePrefab, new Vector3(0, 10, 0), Quaternion.identity);
+                var myKnives = Instantiate(knifePrefab, new Vector3(0, 20, 0), Quaternion.identity);
                 myKnives.SetParent(transform);
                 knives.Add(myKnives);
             }

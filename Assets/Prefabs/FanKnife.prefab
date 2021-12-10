@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knifePrefab: {fileID: 8267400403024184482, guid: 6ea49be9546c6e746b874a1972c6d442, type: 3}
-  knifeAmt: 6
-  KnifeRadius: 1.3
-  DestroyTimer: 1
+  knifeAmt: 7
+  KnifeRadius: 1.5
+  DestroyTimer: 3

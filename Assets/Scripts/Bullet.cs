@@ -37,10 +37,14 @@ public class Bullet : MonoBehaviour
                 //{
                 //    Instantiate(Creature2, new Vector3(Random.Range(-27, 27), 0.5f, Random.Range(-27, 27)), Quaternion.identity);
                 //}
-                
-   
+
             }
             
+        }
+        if (other.gameObject.tag == "NPC")
+        {
+            //destroy bullets
+            Destroy(this.gameObject);
         }
     }
 }
