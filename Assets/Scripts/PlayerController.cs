@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public Item[] Inventory;
     public int currentItemIndex;
 
+    //knife ability 
+    public GameObject knifeDance;
+
 
     void Start()
     {
@@ -160,6 +163,13 @@ public class PlayerController : MonoBehaviour
             else
                 Debug.Log("No cant do!!");
         }
+
+        //Q to cast ability "Knife Dance"
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            var spell = Instantiate(knifeDance, transform.position, Quaternion.identity);
+        }
+
     }
 
     

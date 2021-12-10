@@ -9,7 +9,7 @@ public class Creature : MonoBehaviour
     public enum EnemyStateT
     {
         DecidingWhatToDoNext,
-        SeekingPlayer, MovingToPlayer, Attack, Escape, MovingToSafeSpot, Heal
+        SeekingPlayer, MovingToPlayer, Attack, Escape, Heal
     }
     public EnemyStateT currentState;
 
@@ -68,9 +68,6 @@ public class Creature : MonoBehaviour
             case EnemyStateT.Escape:
                 Run();
                 break;
-            case EnemyStateT.MovingToSafeSpot:
-                MoveToSafeSpot();
-                break;
             case EnemyStateT.Heal:
                 HealSelf();
                 break;
@@ -96,7 +93,7 @@ public class Creature : MonoBehaviour
             }
         }
 
-        if (health <= 20)
+        if (health <= 30)
         {
             currentState = EnemyStateT.Escape;
             return;
@@ -131,25 +128,11 @@ public class Creature : MonoBehaviour
 
     public void Run()
     {
-        Debug.Log("Running");
         GameObject[] SafeObjects = GameObject.FindGameObjectsWithTag("SafeSpot");
         if(SafeObjects.Length > 0)
         {
-            Debug.Log("Found a Safe Spot");
             GameObject targetSafeObject = SafeObjects[0];
             thisNavMeshAgent.SetDestination(targetSafeObject.transform.position);
-            currentState = EnemyStateT.MovingToSafeSpot;
-        }
-    }
-
-    public void MoveToSafeSpot()
-    {
-        GameObject[] SafeObjects = GameObject.FindGameObjectsWithTag("SafeSpot");
-        if (SafeObjects.Length > 0)
-        {
-            GameObject targetSafeObject = SafeObjects[0];
-            thisNavMeshAgent.SetDestination(targetSafeObject.transform.position);
-            currentState = EnemyStateT.Heal;
         }
     }
 
@@ -170,12 +153,12 @@ public class Creature : MonoBehaviour
             currentState = EnemyStateT.Attack;
         }
         //heal when touching safe spot 
-
-        if (currentState == EnemyStateT.MovingToSafeSpot && other.tag == "SafeSpot")
+        if (currentState == EnemyStateT.Escape && other.tag == "SafeSpot")
         {
             currentState = EnemyStateT.Heal;
         }
     }
+
 
     public void ChasePlayer()
     {
