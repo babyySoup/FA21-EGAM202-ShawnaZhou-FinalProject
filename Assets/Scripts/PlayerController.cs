@@ -100,8 +100,6 @@ public class PlayerController : MonoBehaviour
             {
                 Inventory[currentItemIndex].gameObject.SetActive(true);
                 Inventory[currentItemIndex].transform.localPosition = new Vector3(0, 1, 1);
-                //Debug.Log("You are now holding a ") + Inventory[currentItemIndex].name);
-
             }
             else
             {
@@ -172,6 +170,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //chatting key
+        //need area trigger
         if (Input.GetKeyDown(KeyCode.F))
         {
             DialogCanvas.enabled = !DialogCanvas.enabled;
@@ -190,7 +189,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //player taking damage
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Creature")
         {
@@ -198,6 +197,18 @@ public class PlayerController : MonoBehaviour
             if (health <= 0)
             {
                 //player die
+                GameObject.Find("Canvas").transform.Find("GameOverText").gameObject.SetActive(true);
+                Application.Quit();
+            }
+
+        }
+        if (other.gameObject.tag == "CreatureS")
+        {
+            health -= other.gameObject.GetComponent<CreatureS>().Damage;
+            if (health <= 0)
+            {
+                //player die
+                Debug.Log("Hit");
                 GameObject.Find("Canvas").transform.Find("GameOverText").gameObject.SetActive(true);
                 Application.Quit();
             }

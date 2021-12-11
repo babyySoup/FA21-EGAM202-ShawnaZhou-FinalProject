@@ -9,6 +9,7 @@ TagManager:
   - SafeSpot
   - Item
   - NPC
+  - CreatureS
   layers:
   - Default
   - TransparentFX

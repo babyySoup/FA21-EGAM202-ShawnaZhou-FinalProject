@@ -14,19 +14,19 @@ public class Choice : MonoBehaviour
 
     public void Dialog1()
     {
-        TextBox.GetComponent<Text>().text = "There are hungry creatures in every corner of this city.";
+        TextBox.GetComponent<Text>().text = "You haven't seen them? There are hungry creatures in every corner of this city.";
         choiceMade = 1;
     }
 
     public void Dialog2()
     {
-        TextBox.GetComponent<Text>().text = "You don't need to know more about me, unless you are here for busniess.";
+        TextBox.GetComponent<Text>().text = "You don't need to know more about me... unless you are here for busniess.";
         choiceMade = 2;
     }
 
     public void Dialog3()
     {
-        TextBox.GetComponent<Text>().text = "Bye bye, Don't get chewed up.";
+        TextBox.GetComponent<Text>().text = "Bye, try not to get chewed up. I suggest armor.";
         choiceMade = 3;
     }
 

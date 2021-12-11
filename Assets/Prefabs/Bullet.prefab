@@ -233,5 +233,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207f1d031352b23498462c4ae2b27e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Creature1: {fileID: 3788406180701910905, guid: d54be9e4efd46744a93b3c981e79b6c3, type: 3}
-  Creature2: {fileID: 4773906571547042200, guid: c01c77abf2a45a94cac661a20541e34b, type: 3}
+  Creature1: {fileID: 7619403251322731612, guid: 5a901dcded69125418826754b5036b66, type: 3}
+  Creature2: {fileID: 4286615862302311669, guid: 88bb036f021b062419a81ef506217f0e, type: 3}

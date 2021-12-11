@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PotionNiche
   m_EditorClassIdentifier: 
   NicheOccupant: {fileID: 132854197389154950, guid: e440866dc1c6e4949a85f98c881e5009, type: 3}
-  MinX: 20
+  MinX: 30
   MaxX: 400
-  MinZ: 20
-  MaxZ: 400
-  MinElev: -0.01
-  MaxElev: 0.01
+  MinZ: 30
+  MaxZ: 500
+  MinElev: -0.001
+  MaxElev: 0.001
   ProbabilityPerMeter: 0.001
