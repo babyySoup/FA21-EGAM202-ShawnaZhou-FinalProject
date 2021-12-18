@@ -14,8 +14,11 @@ public class PlayerController : MonoBehaviour
     //movement
     public float moveSpeed;
     public GameObject Mousebox;
-    public float health;
 
+    //health 
+    public float health;
+    public healthbar healthbar;
+    private float currentHealth;
 
     //inventory
     public Item[] Inventory;
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         thisNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         NPC = GameObject.Find("Assassin").transform;
+        currentHealth = health;
 
     }
 
@@ -210,6 +214,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Creature")
         {
             health -= other.gameObject.GetComponent<Creature>().Damage;
+            currentHealth = health;
+            healthbar.UpdateHealth((float)currentHealth / (float)50f);
+
             if (health <= 0)
             {
                 //player die
@@ -221,6 +228,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "CreatureS")
         {
             health -= other.gameObject.GetComponent<CreatureS>().Damage;
+            currentHealth = health;
+            healthbar.UpdateHealth((float)currentHealth / (float)50f);
+
             if (health <= 0)
             {
                 //player die
@@ -228,7 +238,10 @@ public class PlayerController : MonoBehaviour
                 GameObject.Find("Canvas").transform.Find("GameOverText").gameObject.SetActive(true);
                 Application.Quit();
             }
-
         }
+        
+            
+
     }
 }
+

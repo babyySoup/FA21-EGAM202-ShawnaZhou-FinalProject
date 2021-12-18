@@ -44,6 +44,11 @@ public class Creature : MonoBehaviour
 
         Hunger -= HungerLostPS * Time.deltaTime;
 
+        if (health < 1)
+        {
+            Destroy(this.gameObject);
+        }
+
         if (health <= 30 && currentState != EnemyStateT.Heal)
         {
             currentState = EnemyStateT.Escape;

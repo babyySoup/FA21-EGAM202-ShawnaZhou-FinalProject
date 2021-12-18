@@ -11,7 +11,7 @@ public class CountdownTimer : MonoBehaviour
 
     void Start()
     {
-        TimerText.GetComponent<Text>().text = "hours:" + hoursLeft;
+        TimerText.GetComponent<Text>().text = "Hours remaining:" + hoursLeft;
     }
 
     private void Update()
@@ -20,6 +20,13 @@ public class CountdownTimer : MonoBehaviour
         {
             StartCoroutine(TimerTake());
         }
+        
+        //win condition 
+        if (takingAway == false && hoursLeft < 1)
+        {
+            TimerText.GetComponent<Text>().text = "You have completed your jorney at the Dark City.";
+            Application.Quit();
+        }
     }
     IEnumerator TimerTake()
     {
@@ -27,7 +34,7 @@ public class CountdownTimer : MonoBehaviour
         //every 15 seconds is 1 hour in game 
         yield return new WaitForSeconds(15);
         hoursLeft -= 1;
-        TimerText.GetComponent<Text>().text = "hours:" + hoursLeft;
+        TimerText.GetComponent<Text>().text = "Hours remaining:" + hoursLeft;
         takingAway = false; 
     }
 }
