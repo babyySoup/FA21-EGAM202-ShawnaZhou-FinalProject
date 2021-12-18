@@ -23,12 +23,20 @@ public class PlayerController : MonoBehaviour
 
     //knife ability 
     public GameObject knifeDance;
+
     //canvas for chat
     public Behaviour DialogCanvas;
+
+    public bool canChat;
+    public float chatRange = 10f;
+    public Transform NPC;
+    public LayerMask isNPC;
+    public GameObject CanvasNPC;
 
     void Start()
     {
         thisNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        NPC = GameObject.Find("Assassin").transform;
 
     }
 
@@ -169,11 +177,19 @@ public class PlayerController : MonoBehaviour
             var ability = Instantiate(knifeDance, transform.position, Quaternion.identity);
         }
 
-        //chatting key
-        //need area trigger
-        if (Input.GetKeyDown(KeyCode.F))
+        
+        //F to chat
+        //depend on chat range to activate canvas
+        canChat = Physics.CheckSphere(transform.position, chatRange, isNPC);
+
+        if (canChat && Input.GetKeyDown(KeyCode.F) && !CanvasNPC.activeSelf)
         {
-            DialogCanvas.enabled = !DialogCanvas.enabled;
+            Debug.Log("Chatting");
+            CanvasNPC.SetActive(true);
+        }else if (canChat && Input.GetKeyDown(KeyCode.F) && CanvasNPC.activeSelf)
+        {
+            Debug.Log("Not Chatting");
+            CanvasNPC.SetActive(false);
         }
 
 

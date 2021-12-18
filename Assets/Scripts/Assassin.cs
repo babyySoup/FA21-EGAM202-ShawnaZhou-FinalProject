@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Assassin : MonoBehaviour
 {
-    // Start is called before the first frame update
+    NavMeshAgent thisNavMeshAgent;
+    public bool playerInRange;
+    public Transform player;
+    public LayerMask isGround, isPlayer;
+
+    //range to chat with player
+    public float sightRange;
+
     void Start()
     {
-        
+        player = GameObject.Find("Player").transform;
+        thisNavMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        playerInRange = Physics.CheckSphere(transform.position, sightRange, isPlayer);
     }
 }

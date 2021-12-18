@@ -7,14 +7,14 @@ public class Bullet : MonoBehaviour
 
     public GameObject Creature1;
     public GameObject Creature2;
-
+    
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Creature")
         {
             //destroy bullets
             Destroy(this.gameObject);
-
+           
             //hit enemy and damage them
             Creature creature = other.gameObject.GetComponent<Creature>();
             creature.health -= 10;

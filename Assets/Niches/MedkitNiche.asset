@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f473086e62ac8c94293a9df13f7f2bb3, type: 3}
   m_Name: MedkitNiche
   m_EditorClassIdentifier: 
-  NicheOccupant: {fileID: 0}
-  MinX: 0
-  MaxX: 0
-  MinZ: 0
-  MaxZ: 0
-  MinElev: 0
-  MaxElev: 0
-  ProbabilityPerMeter: 0
+  NicheOccupant: {fileID: 7446277913205449222, guid: c4a4422937c68a74daa6ead388a53ca5, type: 3}
+  MinX: 30
+  MaxX: 300
+  MinZ: 5
+  MaxZ: 400
+  MinElev: -0.001
+  MaxElev: 0.001
+  ProbabilityPerMeter: 0.001

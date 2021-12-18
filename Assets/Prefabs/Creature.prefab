@@ -71,10 +71,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   moveSd: 20
-  health: 80
+  health: 50
   Damage: 10
   player: {fileID: 0}
-  sightRange: 50
+  sightRange: 30
   attackRange: 3
   playerInSight: 0
   playerInAttackR: 0
