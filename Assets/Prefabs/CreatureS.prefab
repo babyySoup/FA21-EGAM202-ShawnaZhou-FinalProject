@@ -108,9 +108,10 @@ GameObject:
   - component: {fileID: 4286615862302311664}
   - component: {fileID: 4286615862302311665}
   - component: {fileID: 4286615862302311438}
+  - component: {fileID: 6750523050103600133}
   m_Layer: 0
   m_Name: CreatureS
-  m_TagString: Creature
+  m_TagString: CreatureS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +182,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 2000
@@ -209,6 +210,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6750523050103600133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4286615862302311669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c5d926cc739f14d9ceea89ccc2c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnCreature: {fileID: 0}
+  stopSpawning: 0
+  spawnTime: 0
+  spawnDuration: 0
 --- !u!1 &4286615862658933332
 GameObject:
   m_ObjectHideFlags: 0

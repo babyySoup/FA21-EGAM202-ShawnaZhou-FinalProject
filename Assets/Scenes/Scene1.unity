@@ -2015,15 +2015,15 @@ RectTransform:
   m_GameObject: {fileID: 754341570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.94, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1722476755}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.071768984, y: 0.025343958}
-  m_AnchorMax: {x: 0.24200001, y: 0.588}
-  m_AnchoredPosition: {x: -5.000061, y: -6.5}
-  m_SizeDelta: {x: 90, y: -3}
+  m_AnchorMin: {x: 0.093, y: 0.025343958}
+  m_AnchorMax: {x: 0.24200001, y: 0.582}
+  m_AnchoredPosition: {x: -18.000061, y: -4.5}
+  m_SizeDelta: {x: 116, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754341572
 MonoBehaviour:
@@ -2156,6 +2156,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1497782448}
     m_Modifications:
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnCreature
+      value: 
+      objectReference: {fileID: 7619403251322731612, guid: 5a901dcded69125418826754b5036b66, type: 3}
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnDuration
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7619403251322731610, guid: 5a901dcded69125418826754b5036b66, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2518,6 +2530,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1497782448}
     m_Modifications:
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnCreature
+      value: 
+      objectReference: {fileID: 7619403251322731612, guid: 5a901dcded69125418826754b5036b66, type: 3}
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnDuration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7619403251322731610, guid: 5a901dcded69125418826754b5036b66, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2574,13 +2598,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a901dcded69125418826754b5036b66, type: 3}
 --- !u!4 &958768264 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7619403251322731610, guid: 5a901dcded69125418826754b5036b66, type: 3}
   m_PrefabInstance: {fileID: 958768263}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &958768265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7619403251322731612, guid: 5a901dcded69125418826754b5036b66, type: 3}
+  m_PrefabInstance: {fileID: 958768263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &958768266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958768265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c5d926cc739f14d9ceea89ccc2c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnCreature: {fileID: 7619403251322731612, guid: 5a901dcded69125418826754b5036b66, type: 3}
+  stopSpawning: 0
+  spawnTime: 6
+  spawnDuration: 15
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2971,6 +3017,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050152146}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1054715607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4286615862302311669, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
+  m_PrefabInstance: {fileID: 4286615862703722382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1054715608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054715607}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9433136, y: 2.0023873, z: 2.1615257}
+  m_Center: {x: 0.017642975, y: 1.0719525, z: 0.044034958}
 --- !u!1001 &1069247222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3462,7 +3526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.32700002, y: 0.14421505}
   m_AnchorMax: {x: 0.6701446, y: 0.23400001}
-  m_AnchoredPosition: {x: 88, y: 6.0000305}
+  m_AnchoredPosition: {x: 88, y: 6.000061}
   m_SizeDelta: {x: -1, y: -6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1287681036
@@ -6487,9 +6551,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1497782448}
     m_Modifications:
-    - target: {fileID: 4286615862302311665, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
-      propertyPath: m_Speed
-      value: 10
+    - target: {fileID: 4286615862302311664, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
+      propertyPath: m_Size.z
+      value: 2.1667595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286615862302311664, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
+      propertyPath: m_Center.z
+      value: 0.10408211
       objectReference: {fileID: 0}
     - target: {fileID: 4286615862302311666, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
       propertyPath: m_RootOrder
@@ -6543,9 +6611,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: CreatureS
       objectReference: {fileID: 0}
-    - target: {fileID: 4286615862302311669, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
-      propertyPath: m_TagString
-      value: CreatureS
+    - target: {fileID: 6750523050103600133, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
+      propertyPath: spawnTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750523050103600133, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
+      propertyPath: spawnCreature
+      value: 
+      objectReference: {fileID: 4286615862302311669, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
+    - target: {fileID: 6750523050103600133, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
+      propertyPath: spawnDuration
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88bb036f021b062419a81ef506217f0e, type: 3}
@@ -6622,6 +6698,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1497782448}
     m_Modifications:
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnCreature
+      value: 
+      objectReference: {fileID: 7619403251322731612, guid: 5a901dcded69125418826754b5036b66, type: 3}
+    - target: {fileID: 32004939334042790, guid: 5a901dcded69125418826754b5036b66, type: 3}
+      propertyPath: spawnDuration
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7619403251322731610, guid: 5a901dcded69125418826754b5036b66, type: 3}
       propertyPath: m_RootOrder
       value: 1

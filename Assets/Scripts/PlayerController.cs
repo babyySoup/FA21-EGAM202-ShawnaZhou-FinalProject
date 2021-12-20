@@ -170,13 +170,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (Inventory[currentItemIndex] != null)
+            {
                 Inventory[currentItemIndex].GetComponent<Item>().Use();
+                health += 15f;
+                currentHealth = health;
+                healthbar.UpdateHealth((float)currentHealth / (float)50f);
+            }
             else
-                Debug.Log("No cant do!!");
+                Debug.Log("cant do!!");
         }
 
-        //Q to cast ability "Knife Dance"
-        if (Input.GetKeyDown(KeyCode.Q))
+
+            //Q to cast ability "Knife Dance"
+            if (Input.GetKeyDown(KeyCode.Q))
         {
             var ability = Instantiate(knifeDance, transform.position, Quaternion.identity);
         }

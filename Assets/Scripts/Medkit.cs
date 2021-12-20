@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Medkit : Item
 {
+
     public override void Use()
     {
         transform.parent.GetComponent<PlayerController>().health += 20f;
@@ -11,5 +12,6 @@ public class Medkit : Item
 
         transform.parent.GetComponent<PlayerController>().Inventory[currentItemIndex] = null;
         Destroy(this.gameObject);
+
     }
 }
